@@ -10,11 +10,22 @@
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
+    "mongodb": "^4.1.4",
+    "mongoose": "^6.0.12",
     "morgan": "~1.9.1",
     "pug": "2.0.0-beta11"
   },
   "main": "app.js",
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "I am working on Assignment 11.",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Arunreddy619/db21kakunuri.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Arunreddy619/db21kakunuri/issues"
+  },
+  "homepage": "https://github.com/Arunreddy619/db21kakunuri#readme"
 }
