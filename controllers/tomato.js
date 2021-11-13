@@ -35,9 +35,17 @@ exports.tomato_create_post = async function (req, res) {
     }
 };
 // Handle tomato delete form on DELETE.
-exports.tomato_delete = function (req, res) {
-    res.send('NOT IMPLEMENTED: tomato delete DELETE ' + req.params.id);
-};
+exports.tomato_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+    result = await Tomato.findByIdAndDelete( req.params.id)
+    console.log("Removed " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": Error deleting ${err}}`);
+    }
+   };
 // Handle tomato update form on PUT.
 exports.tomato_update_put = async function (req, res) {
     console.log(`update on id ${req.params.id} with body
@@ -80,5 +88,53 @@ exports.tomato_view_all_Page = async function (req, res) {
     catch (err) {
         res.status(500);
         res.send(`{"error": ${err}}`);
+    }
+};
+exports.tomato_view_one_Page = async function (req, res) {
+    console.log("single view for id " + req.query.id)
+    try {
+        result = await Tomato.findById(req.query.id)
+        res.render('tomatodetail',
+            { title: 'tomato Detail', toShow: result });
+    }
+    catch (err) {
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
+exports.tomato_create_Page = function (req, res) {
+    console.log("create view")
+    try {
+        res.render('tomatocreate', { title: 'tomato Create' });
+    }
+    catch (err) {
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+}
+
+exports.tomato_update_Page = async function (req, res) {
+    console.log("update view for item " + req.query.id)
+    try {
+        let result = await Tomato.findById(req.query.id)
+        res.render('tomatoupdate', { title: 'tomato Update', toShow: result });
+    }
+    catch (err) {
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
+exports.tomato_delete_Page = async function (req, res) {
+    console.log("Delete view for id " + req.query.id)
+    try {
+        result = await Tomato.findById(req.query.id)
+        res.render('tomatodelete', {
+            title: 'tomato Delete', toShow:
+                result
+        });
+    }
+    catch (err) {
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
     }
 };

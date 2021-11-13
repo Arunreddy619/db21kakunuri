@@ -12,19 +12,19 @@ async function recreateDB() {
   let instance1 = new
   Tomato({
     tomato_type: "rome-large",
-    expdate: 15,
+    expdata: 15,
     cost: 38.24
   });
   let instance2 = new
   Tomato({
     tomato_type: "bangalore",
-    expdate: 18,
+    expdata: 18,
     cost: 29.67
   });
   let instance3 = new
   Tomato({
     tomato_type: "italy-large",
-    expdate: 16,
+    expdata: 16,
     cost: 24.09
   });  
   instance1.save(function (err, doc) {

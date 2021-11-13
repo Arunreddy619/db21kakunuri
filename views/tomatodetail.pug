@@ -1,0 +1,25 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let id = toShow._id 
+  - let type = toShow.tomato_type 
+  - let cost = toShow.cost 
+  - let expdata = toShow.expdata 
+  div(class="card card-body" style="width: 30rem;") 
+    div(class="row p-3 mb-2 bg-secondary text-white") 
+      div(class=' mr-3 col-sm-6') tomato ID: 
+      div(class=' mr-3 col-sm-6') #{id} 
+    div(class="row p-3 mb-2 bg-secondary text-white") 
+      div(class=' mr-3 col-sm-6') tomato Type: 
+      div(class=' mr-3 col-sm-6') #{type} 
+    div(class="row p-3 mb-2 bg-secondary text-white") 
+      div(class=' mr-3  col-sm-6') tomato expdata  : 
+      div(class=' mr-3 col-sm-6')  #{expdata} 
+    div(class="row p-3 mb-2 bg-secondary text-white") 
+      div(class=' mr-3 col-sm-6') tomato Cost: 
+      div(class=' mr-3 col-sm-6') $#{cost}
+    div(class="d-flex flex-row justify-content-center")      
+            a(href='/tomato' class="btn btn-secondary") Go To tomatos
+

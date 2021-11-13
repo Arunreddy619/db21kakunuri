@@ -1,0 +1,42 @@
+extends layout 
+ 
+block content 
+  h1= title 
+  - let id = toShow._id 
+  - let type = toShow.tomato_type 
+  - let cost = toShow.cost 
+  - let expdata = toShow.expdata 
+  div
+    form(id='tomatoForm', action='/resource/tomato/'+id, method="PUT") 
+        div
+            label(for='tomato_type' class="col-sm-4") tomato type 
+            input#tomato_type(type='text', name='tomato_type' class="form-control" value=type) 
+        div
+            label(for='expdata' class="col-sm-4") tomato expdata 
+            input#expdata(type='text', name='expdata' class="form-control" value=expdata) 
+        div
+            label(for='cost' class="col-sm-4") tomato cost 
+            input#cost(type='number', name='cost' class="form-control" value=cost) 
+        div
+            input(type="submit" class="btn btn-secondary" ) 
+            a(href='/tomato' class="btn btn-secondary") Go To tomatos
+    
+    script. 
+        document.forms['tomatoForm'].addEventListener('submit', (event) => { 
+        event.preventDefault(); 
+        // TODO do something here to show user that form is being submitted 
+        fetch(event.target.action, { 
+            method: 'PUT', 
+            body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+        }).then((resp) => { 
+            return resp.json(); // or resp.text() or whatever the server sends 
+        }).then((body) => { 
+            alert("Save succeded") 
+            // TODO handle body 
+        }).catch((error) => { 
+            // TODO handle error 
+            alert("Save failed " + error ) 
+        }); 
+        }); 
+
+

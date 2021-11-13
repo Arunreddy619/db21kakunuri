@@ -1,0 +1,39 @@
+extends layout 
+ 
+block content 
+  h1= title  
+  div
+    form(id='tomatoForm', action="/resource/tomato", method="POST") 
+        div
+            label(for='tomato_type' class="col-sm-4") tomato type 
+            input#tomato_type(type='text', name='tomato_type' class="form-control") 
+        div
+            label(for='expdata' class="col-sm-4") tomato expdata 
+            input#expdata(type='text', name='expdata' class="form-control") 
+        div
+            label(for='cost' class="col-sm-4") tomato cost 
+            input#cost(type='number', name='cost' class="form-control") 
+        div
+            input(type="submit"  ) 
+        div      
+            a(href='/tomato') Go To tomatos
+    
+    script. 
+        document.forms['tomatoForm'].addEventListener('submit', (event) => { 
+        event.preventDefault(); 
+        // TODO do something here to show user that form is being submitted 
+        fetch(event.target.action, { 
+            method: 'POST', 
+            body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+        }).then((resp) => { 
+            return resp.json(); // or resp.text() or whatever the server sends 
+        }).then((body) => { 
+            alert("Save succeded") 
+            // TODO handle body 
+        }).catch((error) => { 
+            // TODO handle error 
+            alert("Save failed " + error ) 
+        }); 
+        }); 
+
+

@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1= title
-  //- - const tomato = ['tomato_type','expdate','cost']
+  - const tomato = ['Type','Exp Date','Cost','Actions']
   - let items = results;
   - let o;
   script.
@@ -10,9 +10,18 @@ block content
       alert('purchased item ' + x)
    } 
   div(class='container-fluid')
+    div(class='row bg-secondary')
+      each o, index in tomato
+        div(class='col-sm-3' ) #{o} 
     div(class='row')
       each o, index in items
-        div(class='col-sm-3' onclick='buy('+index+')') #{o} 
+        div(class='col-sm-3' ) #{o.tomato_type}
+        div(class='col-sm-3' ) #{o.expdata}
+        div(class='col-sm-3' ) #{o.cost} 
+        div(class='col-sm-3' )
+          a(href="tomato/delete/?id="+o._id style="padding:5px") Delete
+          a(href="tomato/update/?id="+o._id style="padding:5px") Update
+          a(href="tomato/detail/?id="+o._id style="padding:5px") View 
         
 
   
